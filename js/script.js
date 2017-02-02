@@ -167,7 +167,7 @@ function openAbout() {
 }
 
 function hideLevelUp() {
-  $("#levelup").fadeOut();
+  $("#levelup").hide();
   $("#play").show();
 }
 
