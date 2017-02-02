@@ -1,5 +1,10 @@
 var initialLimit = 10;
 var initialErrorLimit = 1;
+var maximumErrorLimit = 20;
+var maximumNumberLimit = 30;
+var operators = ['+', '-', '*', '/'];
+var levelBounds = [5, 10, 15, 20];
+var maxLevel = 4;
 
 var answerStatus = false;
 var duration = 10;
@@ -7,6 +12,7 @@ var limit = 10;
 var errorLimit = 1;
 var timeId;
 var score;
+var level = 1;
 
 function getRandomInt(max) {
   min = 1
@@ -23,7 +29,7 @@ function updateAnswerStatus() {
 }
 
 function showGameOver() {
-  $("#welcome, #play").hide();
+  $("#welcome, #play, #levelup").hide();
   $("#final-score").text(score);
   $("#gameover").show();
 }
@@ -41,9 +47,25 @@ function updateTime() {
   }
 }
 
-function displayExpression(op1, op2, answer) {
+function chooseOperator() {
+  var ops = operators.slice(0, level);
+  var index = getRandomInt(score) % level;
+  return ops[index];
+}
+
+function evaluateExpression(op1, op2, optr) {
+  switch(optr) {
+    case '+' : return op1 + op2;
+    case '-' : return op1 - op2;
+    case '*' : return op1 * op2;
+    case '/' : return Math.ceil(op1 / op2);
+  }
+}
+
+function displayExpression(op1, op2, optr, answer) {
   $("#op1").text(op1);
   $("#op2").text(op2);
+  $("#optr").text(optr);
   $("#answer").text(answer);
   $("#time").text(duration);
 }
@@ -53,35 +75,62 @@ function updateExpression() {
 
   var op1 = getRandomInt(limit);
   var op2 = getRandomInt(limit);
-  var answer = op1 + op2;
 
+  // Don't bring negative
+  if (op1 < op2) {
+    var temp = op1;
+    op1 = op2;
+    op2 = temp;
+  }
+
+  var operator = chooseOperator();
+  var answer = evaluateExpression(op1, op2, operator);
+
+  // Make answer correct
+  if(operator == "/") {
+    op1 = answer * op2;
+  }
+  
   if (!answerStatus) {
-    var error = getRandomInt(errorLimit);
+    var error = Math.ceil(getRandomInt(errorLimit) * answer / 100);
+    error = error == 0 ? getRandomInt(level) : error;
     if(getRandomBool())
       answer += error;
     else
       answer -= error;
   }
 
-  displayExpression(op1, op2, answer);
+  displayExpression(op1, op2, operator, answer);
   timeId = window.setTimeout(updateTime, 1000);
 }
 
 function updateScore() {
   score++;
   $("#score").text(score);
+
+  if(level < maxLevel && score == levelBounds[level - 1]) {
+    level++;
+    showLevelUp();
+  }
+  $("#level").text(level);
 }
 
 function updateLimits() {
-  limit++;
-  errorLimit++;
+  
+  if(errorLimit < maximumErrorLimit) {
+    errorLimit++;
+  }
+
+  if (limit < maximumNumberLimit) {
+    limit++;
+  }
 }
 
 function checkAnswer($this) {
   var answer = $(this).val() == 'true' ? true : false;
   if (Boolean(answer) == answerStatus) {
-    updateScore();
     window.clearTimeout(timeId);
+    updateScore();
     updateLimits();
     updateExpression();
   } else {
@@ -91,6 +140,7 @@ function checkAnswer($this) {
 
 function resetValues() {
   score = 0;
+  level = 1;
   limit = initialLimit;
   errorLimit = initialErrorLimit;
 }
@@ -116,6 +166,17 @@ function openAbout() {
   popupWindow.attr("style", "z-index: 1050; opacity: 1");
 }
 
+function hideLevelUp() {
+  $("#levelup").fadeOut();
+  $("#play").show();
+}
+
+function showLevelUp() {
+  $("#play").hide();
+  $("#levelup-level").text(level);
+  $("#levelup").fadeIn(1000);
+  setTimeout(hideLevelUp, 2000);
+}
 
 $(document).ready(function() {
   $("#option-true, #option-false").on("click", checkAnswer);

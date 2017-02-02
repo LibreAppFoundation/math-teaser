@@ -1,14 +1,15 @@
 body {
   font-family: "Open Sans", sans-serif;
-  text-align: center
-}
-
-#play, #gameover {
-  display: none;
-}
-
-body {
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
   background: orange;
+  height: 100%;
+  padding: 10px;
+}
+
+#play, #levelup, #gameover {
+  display: none;
 }
 
 .start {
@@ -20,8 +21,10 @@ body {
   margin-top: 2rem;
   cursor: pointer;
   transition: background ease 1s;
-  margin-top: 25%;
-  font-size: 200%
+  margin-top: 20%;
+  font-size: 200%;
+  width: 80%;
+  margin: 20% auto;
 }
 
 .start:hover {
@@ -30,15 +33,15 @@ body {
 }
 
 #welcome h1 {
-  margin-top: 50%;
+  margin-top: 20%;
   color: white;
-  text-decoration: underline;
-  font-size: 1.5rem;
+  font-size: 300%;
 }
 
 #about {
   width: 20%;
   margin-top: 10%;
+  cursor: pointer;
 }
 
 /* Popup message */
@@ -133,7 +136,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 0.2rem;
   border: none;
   font-size: 200%;
@@ -147,6 +150,14 @@ body {
   background: red;
 }
 
+#levelup h1 {
+  margin-top: 30%;
+}
+
+#levelup-level {
+  font-size: 200%;
+}
+
 #gameover {
   padding-top: 50%;
 }
@@ -154,4 +165,5 @@ body {
 #final-score-board {
   font-weight: bold;
   color: white;
+  font-size: 200%;
 }
