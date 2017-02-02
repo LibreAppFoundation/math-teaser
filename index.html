@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Math Test</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="welcome">
+      <h1>MathTest</h1>
+      <div class="start">Play</div>
+      
+      <img id="about" src="img/about.svg"/>
+      
+      <!-- About Dialog -->
+      <div id="popup-message-window">
+        <div id="popup-message-container">
+          <div id="popup-message">
+            <h4>MathTest</h4>
+            <p>MathTest is a simple hybrid app to check your knowledge
+            on basic mathematic operations.</p>
+            <p id="copy">&copy;LibreApp Foundation</p>
+          </div>
+          <a id="close" onclick="close()">Close</a>
+        </div>
+      </div>
+    </div>
+    <div id="play">
+      <div id="header">
+        <div id="scoreboard">
+          <div class="label">
+            Level : <span id="level">1</span>
+          </div>
+          <div class="label">
+            Score : <span id="score">0</span>
+          </div>
+        </div>
+        <div id="time">
+          10
+        </div>
+      </div>
+      <span id="op1">13</span>
+      <span id="optr">+</span>
+      <span id="op2">47</span>
+      <span id="assign">=</span>
+      <span id="answer">63</span>
+      <div id="options">
+        <button id="option-true" value="true">
+          True
+        </button>
+        <button id="option-false" value="false">
+          False
+        </button>
+      </div>
+
+    </div>
+    <div id="gameover">
+      <h1>Game Over</h1>
+      <div id="final-score-board">
+        Score <span id="final-score"></span>
+      </div>
+      <div class="start">Play Again</div>
+    </div>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

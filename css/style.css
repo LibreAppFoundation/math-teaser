@@ -1,0 +1,157 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  text-align: center
+}
+
+#play, #gameover {
+  display: none;
+}
+
+body {
+  background: orange;
+}
+
+.start {
+  font-weight: bold;
+  padding: 5px;
+  color: orange;
+  text-transform: uppercase;
+  background: yellow;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: background ease 1s;
+  margin-top: 25%;
+  font-size: 200%
+}
+
+.start:hover {
+  background: #eeee00;
+  transition: background ease 1s;
+}
+
+#welcome h1 {
+  margin-top: 50%;
+  color: white;
+  text-decoration: underline;
+  font-size: 1.5rem;
+}
+
+#about {
+  width: 20%;
+  margin-top: 10%;
+}
+
+/* Popup message */
+#popup-message-window {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+  text-align: center;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding-top: 10%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#popup-message-container {
+  background: orange;
+  width: 90%;
+  margin: auto;
+  padding: 15px;
+  color: white;
+  max-height: 400px;
+  max-width: 400px;
+  margin-top: 30%;
+}
+
+#close {
+  border: 1px solid #2e6da4;
+  background: yellow;
+  cursor: pointer;
+  padding: 5px 10px;;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: orange;
+  border: none;
+  border-radius: 0;
+}
+
+#close:hover {
+  background: #eeee00;
+  transition: background ease 1s;
+}
+
+#close:active {
+  background: #eeee00;
+  transition: background ease 1s;
+}
+
+#copy {
+  font-weight: bold;
+}
+
+#header {
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20%;
+}
+
+#scoreboard, #time {
+  width: 48%;
+  display: inline-block;
+}
+
+#time {
+  text-align: right;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #555;
+}
+
+#op1, #op2, #optr, #answer, #assign {
+  font-size: 200%;
+  font-weight: bold
+}
+
+#options {
+  margin-top: 20%;
+}
+
+#option-true, #option-false {
+  display: block;
+  width: 80%;
+  padding: 5px;
+  margin: auto;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 0.2rem;
+  border: none;
+  font-size: 200%;
+}
+
+#option-true {
+  background: green;
+}
+
+#option-false {
+  background: red;
+}
+
+#gameover {
+  padding-top: 50%;
+}
+
+#final-score-board {
+  font-weight: bold;
+  color: white;
+}
